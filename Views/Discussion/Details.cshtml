@@ -1,0 +1,52 @@
+﻿@model Online_Discussion.Models.DiscussionModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+
+<div>
+    
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>*@
+    </dl>
+</div>
+<div class=" border border-dark my-3  py-3 px-3 ">
+    <form method="post" asp-action="Details">
+        <div>
+            <label>Your answer</label>
+            <textarea name="answer" class="form-control"></textarea>
+            <input type="number" name="discussionId" value="@Model.Id" hidden />
+            <input type="submit" value="submit" class="btn btn-primary m-2" />
+        </div>
+    </form>
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |*@
+    <a asp-action="Index" class="btn btn-primary">Back to view topics</a>
+</div>
+<div class="my-5 py-5 px-3 shadow-lg border border-dark">
+    <h5>Answers:</h5>
+    @foreach (var item in @ViewBag.answers)
+    {
+        <div class=" border border-dark border-1 p-3 shadow-sm my-2 ">
+
+            @item.Answer
+        </div>
+            
+    }
+</div>
